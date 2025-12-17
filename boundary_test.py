@@ -65,7 +65,7 @@ def detect_test_type(filename, initial_params):
             'lon_constant': True,
             'check_pole': False
         }
-    elif 'eq-d' in filename_lower:  # ИЗМЕНЕНО: eq-test -> eq-d
+    elif 'eq-d' in filename_lower:
         return {
             'name': 'hwr_622_equator_diagonal_sw_ne_test',
             'description': 'Проверка диагонального пересечения экватора с юго-запада на северо-восток',
@@ -94,7 +94,7 @@ def detect_test_type(filename, initial_params):
             'lat_constant': True,
             'check_pole': False
         }
-    elif '0m-e-d' in filename_lower:  # ИЗМЕНЕНО: 0m-e-d уже правильное имя
+    elif '0m-e-d' in filename_lower:
         return {
             'name': 'hwr_632_greenwich_diagonal_nw_se_test',
             'description': 'Проверка диагонального пересечения гринвича с северо-запада на юго-восток',
@@ -105,7 +105,7 @@ def detect_test_type(filename, initial_params):
         }
     
     # ===== ЛИНИЯ ДАТ =====
-    elif '180m-e' in filename_lower and '180-d' not in filename_lower:  # ИЗМЕНЕНО: 180-test -> 180-d
+    elif '180m-e' in filename_lower and '180-d' not in filename_lower:
         return {
             'name': 'hwr_633_dataline_west_to_east_test',
             'description': 'Проверка прямого пересечения линии дат с запада на восток',
@@ -123,7 +123,7 @@ def detect_test_type(filename, initial_params):
             'lat_constant': True,
             'check_pole': False
         }
-    elif '180-d' in filename_lower:  # ИЗМЕНЕНО: 180-test -> 180-d
+    elif '180-d' in filename_lower: 
         return {
             'name': 'hwr_635_dataline_diagonal_ne_sw_test',
             'description': 'Проверка диагонального пересечения линии дат с северо-востока на юго-запад',
@@ -143,7 +143,7 @@ def detect_test_type(filename, initial_params):
             'lat_constant': False,
             'check_pole': True
         }
-    elif 'n-d' in filename_lower:  # ИЗМЕНЕНО: n-test -> n-d
+    elif 'n-d' in filename_lower:
         return {
             'name': 'hwr_637_north_diagonal_test',
             'description': 'Проверка диагонального движения вблизи северного полюса',
@@ -161,7 +161,7 @@ def detect_test_type(filename, initial_params):
             'lat_constant': False,
             'check_pole': True
         }
-    elif 's-d' in filename_lower:  # ИЗМЕНЕНО: s-test -> s-d
+    elif 's-d' in filename_lower:
         return {
             'name': 'hwr_639_south_diagonal_test',
             'description': 'Проверка диагонального движения вблизи южного полюса',
@@ -345,7 +345,7 @@ def check_pole_crossing(test_type, lat_values, lon_values, track_values):
                     # Проверяем изменение курса (должен измениться на ~180°)
                     if len(track_values) > i+1:
                         track_change = abs(track_values[i+1] - track_values[i-1])
-                        if track_change > 170:  # Изменение курса ~180°
+                        if track_change > 170:
                             return True, f"Северный полюс достигнут (~{max_lat:.1f}°), курс изменился на {track_change:.0f}°"
                     
                     return True, f"Северный полюс достигнут (~{max_lat:.1f}°)"
@@ -541,7 +541,7 @@ def main():
         print("  ЭКВАТОР:")
         print("    eq-N.piv / eq_N.piv      - hwr_620: юг→север")
         print("    eq-S.piv                 - hwr_621: север→юг")
-        print("    eq-d.piv                 - hwr_622: ЮЗ→СВ (диагональ)")  # ИЗМЕНЕНО: eq-test.piv -> eq-d.piv
+        print("    eq-d.piv                 - hwr_622: ЮЗ→СВ (диагональ)")  
         
         print("  ГРИНВИЧ:")
         print("    0M-E.piv                 - hwr_630: запад→восток")
@@ -551,13 +551,13 @@ def main():
         print("  ЛИНИЯ ДАТ:")
         print("    180M-E.piv               - hwr_633: запад→восток")
         print("    180M-W.piv               - hwr_634: восток→запад")
-        print("    180-d.piv                - hwr_635: СВ→ЮЗ (диагональ)")  # ИЗМЕНЕНО: 180-test.piv -> 180-d.piv
+        print("    180-d.piv                - hwr_635: СВ→ЮЗ (диагональ)")  
         
         print("  ПОЛЮСА:")
         print("    N.piv                    - hwr_636: северный полюс")
-        print("    N-d.piv                  - hwr_637: диагональ у сев. полюса")  # ИЗМЕНЕНО: N-test.piv -> N-d.piv
+        print("    N-d.piv                  - hwr_637: диагональ у сев. полюса")  
         print("    S.piv                    - hwr_638: южный полюс")
-        print("    S-d.piv                  - hwr_639: диагональ у юж. полюса")  # ИЗМЕНЕНО: S-test.piv -> S-d.piv
+        print("    S-d.piv                  - hwr_639: диагональ у юж. полюса")  
         
         print("\nПример: python3 universal_boundary_test.py eq-S.piv")
         sys.exit(1)
