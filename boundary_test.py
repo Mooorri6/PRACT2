@@ -415,7 +415,7 @@ def run_test(piv_file):
     filename = os.path.basename(piv_file).lower()
     
     # Для полюсов нужны более длительные тесты
-    if 'n.piv' in filename or 's.piv' in filename or 'n-d' in filename or 's-d' in filename:  # ИЗМЕНЕНО: n-test/s-test -> n-d/s-d
+    if 'n.piv' in filename or 's.piv' in filename or 'n-d' in filename or 's-d' in filename:
         test_duration = 180  # 3 минуты для полюсов
     elif '180' in filename:
         test_duration = 90   # 1.5 минуты для линии дат
